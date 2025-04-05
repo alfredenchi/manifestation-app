@@ -22,13 +22,10 @@ const Navigation = () => {
   return (
     <nav className="h-16 w-full bg-black shadow-xl border-b-2 border-amber-400 fixed top-0 left-0 right-0 z-[9999]">
       <div className="container mx-auto px-4 h-full">
-        <div className="h-full flex items-center justify-between">
-          <Link to="/" className="text-amber-400 text-xl font-bold hover:text-amber-300 transition-colors duration-300">
-            Videos
-          </Link>
-          <div className="flex items-center">
-            <NavLink to="/readme">Principles</NavLink>
-          </div>
+        <div className="h-full flex items-center justify-center space-x-16">
+          <NavLink to="/">Videos</NavLink>
+          <NavLink to="/sales">Sales</NavLink>
+          <NavLink to="/readme">Principles</NavLink>
         </div>
       </div>
     </nav>

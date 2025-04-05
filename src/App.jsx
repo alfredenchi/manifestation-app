@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Feed from './components/Feed';
 import Readme from './components/Readme';
 import Navigation from './components/Navigation';
+import AirtableVideos from './components/AirtableVideos';
+import './index.css';
 
 function AppContent() {
   const location = useLocation();
@@ -15,6 +17,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Feed />} />
           <Route path="/readme" element={<Readme />} />
+          <Route path="/sales" element={<AirtableVideos />} />
         </Routes>
       </main>
     </div>
@@ -23,7 +26,7 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/manifestation-app">
       <AppContent />
     </Router>
   );
