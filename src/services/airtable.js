@@ -110,4 +110,53 @@ export const fetchRandomNewVideo = async () => {
     console.error('Error fetching random video from sales Airtable:', error);
     throw error;
   }
+};
+
+// Keep track of which records we've already seen for the Lion Glass UK videos
+const seenLionGlassRecordIds = new Set();
+
+export const fetchRandomLionGlassVideo = async () => {
+  try {
+    // First, get all records if we haven't fetched them yet
+    if (!fetchRandomLionGlassVideo.allRecordIds) {
+      const allRecords = await base('tblxTiA5MS98iKPoa')
+        .select({
+          view: 'viw54eHi6J2wNXQC3',
+          // We need at least one field to fetch records
+          fields: ['attachment']
+        })
+        .all();
+      
+      fetchRandomLionGlassVideo.allRecordIds = allRecords.map(record => record._rawJson.id);
+    }
+
+    // If we've seen all videos, reset the seen records
+    if (seenLionGlassRecordIds.size >= fetchRandomLionGlassVideo.allRecordIds.length) {
+      seenLionGlassRecordIds.clear();
+    }
+
+    // Get available record IDs (ones we haven't seen yet)
+    const availableIds = fetchRandomLionGlassVideo.allRecordIds.filter(id => !seenLionGlassRecordIds.has(id));
+    
+    // Pick a random ID from available ones
+    const randomIndex = Math.floor(Math.random() * availableIds.length);
+    const randomId = availableIds[randomIndex];
+
+    // Fetch the full record for this ID
+    const record = await base('tblxTiA5MS98iKPoa').find(randomId);
+    
+    // Mark this record as seen
+    seenLionGlassRecordIds.add(randomId);
+
+    return {
+      id: record.id,
+      title: record.fields.title || '',
+      description: record.fields.description || '',
+      videoUrl: record.fields.attachment?.[0]?.url || '',
+      thumbnailUrl: record.fields.attachment?.[0]?.thumbnails?.large?.url || ''
+    };
+  } catch (error) {
+    console.error('Error fetching random video from Lion Glass UK Airtable:', error);
+    throw error;
+  }
 }; 

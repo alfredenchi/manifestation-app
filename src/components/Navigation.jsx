@@ -25,6 +25,7 @@ const Navigation = () => {
         <div className="h-full flex items-center justify-center space-x-16">
           <NavLink to="/">Videos</NavLink>
           <NavLink to="/sales">Sales</NavLink>
+          <NavLink to="/lionglass">Lion Glass UK</NavLink>
           <NavLink to="/readme">Principles</NavLink>
         </div>
       </div>

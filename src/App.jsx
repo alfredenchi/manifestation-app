@@ -3,6 +3,7 @@ import Feed from './components/Feed';
 import Readme from './components/Readme';
 import Navigation from './components/Navigation';
 import AirtableVideos from './components/AirtableVideos';
+import LionGlassUK from './components/LionGlassUK';
 import './index.css';
 
 function AppContent() {
@@ -18,6 +19,7 @@ function AppContent() {
           <Route path="/" element={<Feed />} />
           <Route path="/readme" element={<Readme />} />
           <Route path="/sales" element={<AirtableVideos />} />
+          <Route path="/lionglass" element={<LionGlassUK />} />
         </Routes>
       </main>
     </div>
