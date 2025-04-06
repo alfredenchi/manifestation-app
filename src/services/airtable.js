@@ -1,7 +1,7 @@
 import Airtable from 'airtable';
 
 const base = new Airtable({
-  apiKey: 'patXGPPNuAHIkWMKz.fb36c2a301aea29a81ed92adeea0199b3d00b031b91cbcc43bb469f6b3bcd032'
+  apiKey: import.meta.env.VITE_AIRTABLE_API_KEY
 }).base('app6Kxfw7kVFiBeXh');
 
 // Keep track of which records we've already seen
