@@ -1,7 +1,17 @@
 import Airtable from 'airtable';
 
+// Get API key from environment variables
+const apiKey = import.meta.env.VITE_AIRTABLE_API_KEY;
+console.log('Using Airtable API key:', apiKey ? `${apiKey.substring(0, 8)}...` : 'undefined');
+
+// Verify API key is available
+if (!apiKey) {
+  console.error('ERROR: Airtable API key not found in environment variables!');
+  console.error('Please ensure you have a .env file with VITE_AIRTABLE_API_KEY set.');
+}
+
 const base = new Airtable({
-  apiKey: import.meta.env.VITE_AIRTABLE_API_KEY
+  apiKey: apiKey
 }).base('app6Kxfw7kVFiBeXh');
 
 // Keep track of which records we've already seen
